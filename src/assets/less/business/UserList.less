@@ -1,0 +1,90 @@
+@import '@/assets/less/var';
+@import '@/assets/less/mixins/scrollbar';
+@import '~antd/lib/style/themes/default.less';
+
+.user-list-wrapper {
+  position: relative;
+  height: 100%;
+  background-color: @layout-body-background;
+
+  .wrapper-body {
+    display: flex;
+    height: 100%;
+
+    .left {
+      width: 300px;
+      background-color: @white;
+
+      .search {
+        padding: 10px 10px 0;
+      }
+
+      .list {
+        margin-top: 20px;
+        overflow: auto;
+        height: calc(100% - 62px);
+        padding-left: 10px;
+        .scrollbarLight();
+
+        .site-collapse-custom-collapse {
+          .site-collapse-custom-panel {
+            .opt-icon {
+              float: right;
+              display: none;
+              margin-right: 8px;
+
+              .opt-icon-sub:hover {
+                color: @primary-color;
+              }
+            }
+
+            .@{ant-prefix}-collapse-header {
+              padding: 5px 0;
+
+              &:hover {
+                background-color: @primary-1;
+
+                .opt-icon {
+                  display: flex;
+                }
+              }
+            }
+
+            .@{ant-prefix}-collapse-content-box {
+              padding: 0 0 0 20px;
+
+              .dict-cate {
+                height: 28px;
+                line-height: 28px;
+                padding-left: 10px;
+                margin: 5px 0;
+
+                &:hover {
+                  cursor: pointer;
+                  background-color: @primary-1;
+
+                  .opt-icon {
+                    display: flex;
+                  }
+                }
+
+                &.selected {
+                  background-color: @primary-1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .center {
+      width: 16px;
+    }
+
+    .right {
+      flex: 1;
+      background-color: @white;
+    }
+  }
+}

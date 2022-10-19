@@ -1,0 +1,230 @@
+@import './var.less';
+@import '~antd/lib/style/themes/default.less';
+@import '@/assets/less/mixins/scrollbar';
+
+.framework-base-wrapper {
+  .framework-header {
+    padding: 0;
+    height: @framework-header-height;
+    line-height: @framework-header-height;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+
+    &-layout {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 16px;
+
+      // 亮色主题需要改变的样式
+      &.light {
+        background-color: #fff;
+
+        .framework-header-layout-left-logo {
+          h1 {
+            color: rgba(0, 0, 0, 0.85);
+          }
+        }
+      }
+
+      & > * {
+        height: 100%;
+      }
+
+      &-left {
+        display: flex;
+        min-width: 192px;
+
+        &-logo {
+          position: relative;
+          min-width: 165px;
+          height: 100%;
+          overflow: hidden;
+
+          & > a {
+            display: flex;
+            align-items: center;
+
+            img {
+              display: inline-block;
+              height: 32px;
+              vertical-align: middle;
+            }
+
+            h1 {
+              display: inline-block;
+              margin: 0 0 0 12px;
+              color: #ffffff;
+              font-weight: 400;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+
+      // 菜单栏在顶部时特殊处理
+      &-menu {
+        .@{ant-prefix}-menu {
+          background: 0 0;
+          height: 100%;
+          border: none;
+        }
+      }
+
+      &-right {
+        display: flex;
+        float: right;
+        margin-left: auto;
+        overflow: hidden;
+        height: @framework-header-height;
+
+        .header-btn-action {
+          font-size: 16px;
+          height: 100%;
+          padding: 0 12px;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          vertical-align: middle;
+          transition: all 0.3s;
+          color: hsla(0, 0%, 100%, 0.85);
+
+          &:hover {
+            background: @primary-color;
+          }
+
+          // 暂时没用
+          &.trigger {
+            &:hover {
+              color: @primary-color;
+              background: transparent;
+            }
+          }
+        }
+
+        &.light {
+          .header-btn-action {
+            color: inherit;
+
+            &:hover {
+              background: rgba(0, 0, 0, 0.025);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .framework-sider {
+    transition: background-color 0.3s, min-width 0.3s, max-width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    &-fixed {
+      position: fixed;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
+    }
+
+    .@{ant-prefix}-layout-sider-children {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    &-placeholder {
+      width: @framework-sider-width;
+      overflow: hidden;
+      flex: 0 0 @framework-sider-width;
+      max-width: @framework-sider-width;
+      min-width: @framework-sider-width;
+      transition: background-color 0.3s ease 0s, min-width 0.3s ease 0s,
+        max-width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+
+      &.collapsed {
+        flex: 0 0 @framework-sider-collapsed-width;
+        max-width: @framework-sider-collapsed-width;
+        min-width: @framework-sider-collapsed-width;
+        width: @framework-sider-collapsed-width;
+      }
+    }
+
+    &-logo {
+      padding: 16px;
+      display: flex;
+      position: relative;
+      cursor: pointer;
+      align-items: center;
+      transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.335, 1);
+
+      &.collapsed {
+        padding: 16px 8px;
+      }
+
+      & > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 32px;
+
+        img {
+          display: inline-block;
+          height: 32px;
+          vertical-align: middle;
+        }
+
+        h1 {
+          display: inline-block;
+          height: 32px;
+          margin: 0 0 0 12px;
+          color: #ffffff;
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 32px;
+          vertical-align: middle;
+          animation: pro-layout-title-hide 0.3s;
+        }
+      }
+    }
+
+    &-menu {
+      overflow: hidden auto;
+      flex: 1 1 0%;
+
+      .@{ant-prefix}-menu-submenu-title {
+        padding: 0 16px;
+      }
+    }
+
+    &-links {
+      width: 100%;
+
+      .@{ant-prefix}-menu-item {
+        &.collapsed-item-active {
+          border-top: 1px solid rgba(0, 0, 0, 0.25);
+
+          .collapsed-button {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .framework-content {
+    background-color: #ffffff;
+    margin: @framework-content-margin 16px;
+    height: calc(100% - @framework-content-margin * 2 - @framework-header-height);
+    overflow: hidden;
+
+    &-layout {
+      position: relative;
+      height: 100%;
+      overflow: auto;
+
+      .scrollbarLight();
+    }
+  }
+}
